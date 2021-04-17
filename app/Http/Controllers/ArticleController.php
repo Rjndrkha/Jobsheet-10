@@ -15,8 +15,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles=Article::all();
-        return view('articles.index',['articles'=>$articles]);
+        $articles = Article::all();
+        return view('articles.index', ['articles' => $articles]);
     }
 
     /**
@@ -37,17 +37,17 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->file('image')){
-            $image_name=$request->file('image')->store('image','public');
+        $image_name=new Article;
+        if ($request->file('image')) {
+            $image_name = $request->file('image')->store('images', 'public');
         }
         Article::create([
-            'title'=>$request->title,
-            'content'=>$request->content,
-            'featured_image'=>$image_name,
+            'title' => $request->title,
+            'content' => $request->content,
+            'featured_image' => $image_name,
         ]);
         return redirect()->route('articles.index')
-        ->with('success','Articles Successfully Added');
-
+            ->with('success', 'Articles Successfully Added');
     }
 
     /**
