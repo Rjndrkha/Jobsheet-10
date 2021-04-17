@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use Illuminate\Http\Request;
 
+
 class ArticleController extends Controller
 {
     /**
@@ -25,7 +26,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view(articles.create);
+        return view('articles.create');
     }
 
     /**
@@ -45,7 +46,7 @@ class ArticleController extends Controller
             'featured_image'=>$image_name,
         ]);
         return redirect()->route('articles.index')
-        ->with('success','Articles Successfully Added')
+        ->with('success','Articles Successfully Added');
 
     }
 
